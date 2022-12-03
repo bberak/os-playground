@@ -1,0 +1,14 @@
+{
+  "name": "three-easy-steps-os",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "compile": "gcc -o",
+    "disassemble": "otool -tV",
+    "symbols": "nm",
+    "check": "file"
+  },
+  "author": "",
+  "license": "ISC"
+}
