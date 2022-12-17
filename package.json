@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "compile": "gcc -o",
-    "disassemble": "otool -tV",
+    "disassemble": "otool -htV",
     "symbols": "nm",
     "check": "file"
   },
