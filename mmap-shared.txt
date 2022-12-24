@@ -1,1 +1,0 @@
-CS431 takeaway: mmap can be used to map files in memory

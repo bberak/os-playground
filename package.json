@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "compile": "gcc -o",
-    "disassemble": "otool -htV",
+    "compile": "gcc -g -o",
+    "otool": "otool -htV",
+    "objdump": "objdump -d",
     "symbols": "nm",
     "file": "file",
     "vmmap": "vmmap"
