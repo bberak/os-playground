@@ -9,7 +9,9 @@
     "objdump": "objdump -d",
     "symbols": "nm",
     "file": "file",
-    "vmmap": "vmmap"
+    "vmmap": "vmmap",
+    "gdb": "",
+    "valgrind": ""
   },
   "author": "",
   "license": "ISC"
