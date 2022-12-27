@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "compile": "gcc -g -o",
+    "gcc": "gcc -g -o",
+    "gcc:warnings": "gcc -Wall -g -o",
     "otool": "otool -htV",
     "objdump": "objdump -d",
     "symbols": "nm",
