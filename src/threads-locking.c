@@ -5,15 +5,15 @@ volatile int counter = 0;
 pthread_mutex_t counter_lock = PTHREAD_MUTEX_INITIALIZER;
 
 void* start_counting(void* args) {
+    // Obtain lock before counting (critical section)
+    pthread_mutex_lock(&counter_lock);
+
     for (int i = 0; i < 1e7; i++) {
-        // Obtain lock before counting (critical section)
-        pthread_mutex_lock(&counter_lock);
-
-        counter = counter + 1;
-
-        // Release lock when complete
-        pthread_mutex_unlock(&counter_lock);
+        counter = counter + 1;    
     }
+
+    // Release lock when complete
+    pthread_mutex_unlock(&counter_lock);
 
     return NULL;
 }
