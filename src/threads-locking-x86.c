@@ -8,20 +8,16 @@ typedef struct __lock_t {
 int counter = 0;
 lock_t counter_lock;
 
-char compare_and_swap(int *ptr, int old, int new) {
-    unsigned char ret;
-
-    // Note that sete sets a 'byte' not the word
+int compare_and_swap(volatile int *ptr, int old, int new) {
     __asm__ __volatile__ (
-        " lock\n"
-        " cmpxchgl %2, %1\n"
-        " sete %0\n"
-        : "=q" (ret), "=m" (*ptr)
-        : "r" (new), "m" (*ptr), "a" (old)
+        "lock\n"
+        "cmpxchgl %1,%2\n" 
+        : "=a" (old) 
+        : "q" (new), "m" (*ptr), "0" (old) 
         : "memory"
     );
 
-    return ret;
+    return old;
 }
 
 void init(lock_t *lock) {
