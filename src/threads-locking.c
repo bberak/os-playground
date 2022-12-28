@@ -1,7 +1,7 @@
 #include <pthread.h>
 #include <stdio.h>
 
-volatile int counter = 0;
+int counter = 0;
 pthread_mutex_t counter_lock = PTHREAD_MUTEX_INITIALIZER;
 
 void* start_counting(void* args) {
@@ -9,11 +9,11 @@ void* start_counting(void* args) {
     pthread_mutex_lock(&counter_lock);
 
     for (int i = 0; i < 1e7; i++) {
-        counter = counter + 1;    
+        counter = counter + 1; 
     }
 
     // Release lock when complete
-    pthread_mutex_unlock(&counter_lock);
+    pthread_mutex_unlock(&counter_lock);   
 
     return NULL;
 }
@@ -29,7 +29,7 @@ int main(void) {
     }
 
     // Create the second thread
-    if (pthread_create(&thread1, NULL, start_counting, NULL) != 0) {
+    if (pthread_create(&thread2, NULL, start_counting, NULL) != 0) {
         printf("Error creating thread2\n");
         return 1;
     }

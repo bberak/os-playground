@@ -1,7 +1,7 @@
 #include <pthread.h>
 #include <stdio.h>
 
-volatile int counter = 0;
+int counter = 0;
 
 void* my_thread_function(void* args) {
   for (int i = 0; i < 1e7; i++) {
@@ -25,7 +25,7 @@ int main(void) {
   }
 
   // Create the second thread
-  int rc2 = pthread_create(&thread1, NULL, my_thread_function, NULL);
+  int rc2 = pthread_create(&thread2, NULL, my_thread_function, NULL);
   
   if (rc2 != 0) {
     // An error occurred

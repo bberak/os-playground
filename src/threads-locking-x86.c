@@ -5,7 +5,7 @@ typedef struct __lock_t {
     int flag;
 } lock_t;
 
-volatile int counter = 0;
+int counter = 0;
 lock_t counter_lock;
 
 char compare_and_swap(int *ptr, int old, int new) {
@@ -39,12 +39,14 @@ void unlock(lock_t *lock) {
 }
 
 void* start_counting(void* args) {
+    // Acquire the lock
     lock(&counter_lock);
 
     for (int i = 0; i < 1e7; i++) {
         counter = counter + 1;
     }
 
+    // Release the lock
     unlock(&counter_lock);
 
     return NULL;
@@ -64,7 +66,7 @@ int main(void) {
     }
 
     // Create the second thread
-    if (pthread_create(&thread1, NULL, start_counting, NULL) != 0) {
+    if (pthread_create(&thread2, NULL, start_counting, NULL) != 0) {
         printf("Error creating thread2\n");
         return 1;
     }
